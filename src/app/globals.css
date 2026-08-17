@@ -1,0 +1,916 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-almarai), "Almarai", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
+  --font-heading: var(--font-sans);
+
+  /* qataridiar.com palette */
+  --color-qd-navy: #201747;
+  --color-qd-gold: #cb9c69;
+  --color-qd-text: #424242;
+  --color-qd-cream: #fbf9f9;
+  --color-qd-lavender: #c5c1d4;
+  --color-qd-lilac: #c9bcff;
+  --color-qd-rule: #dddddd;
+  --color-qd-danger: #b3261e;
+  --color-qd-danger-on-dark: #ffb3a7;
+
+  /* fluid redesign — depth tokens (applied only to floating/overlap elements) */
+  --radius-qd-float: 6px;
+  --shadow-qd-float: 0 24px 48px -16px rgba(32, 23, 71, 0.35);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* motion + layout tokens */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --max-width-qd-clone: 1230px;
+  --max-width-qd-wide: 1400px;
+}
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+/* ---------------------------------------------------------------
+   qataridiar.com/ar clone — route-scoped foundation.
+   The source applies `letter-spacing: 0 !important` to every element
+   under html[lang="ar"], which nullifies every letter-spacing value
+   in its own stylesheet. Reproduced here so the arabic text metrics
+   match rather than inheriting the theme's authored tracking.
+   --------------------------------------------------------------- */
+.qd-root,
+.qd-root * {
+  letter-spacing: 0 !important;
+}
+
+.qd-root {
+  color: var(--color-qd-text);
+  background: #ffffff;
+}
+
+/* Gold arrow link: RTL variant slides the arrow 5px inward on hover. */
+.qd-arrow-link {
+  display: block;
+  height: 25px;
+  padding-right: 40px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 25px;
+  text-transform: uppercase;
+  color: var(--color-qd-gold);
+  background-image: url("/sites/www-qataridiar-com-24dfe100/ar-75f3ac56/images/icon-arrow-circle.svg");
+  background-position: right center;
+  background-repeat: no-repeat;
+  transition: all 0.5s ease;
+}
+.qd-arrow-link:hover {
+  color: var(--color-qd-navy);
+  background-position-x: calc(100% - 5px);
+}
+.qd-arrow-link--onDark:hover {
+  color: #ffffff;
+}
+
+/* ---------------------------------------------------------------
+   Scroll-reveal utility. See src/components/motion/Reveal.tsx — the
+   wrapper sets data-inview="true" once via IntersectionObserver; every
+   visual detail lives here in CSS so wrapped subtrees stay server
+   components. Used only on the Egypt landing page (`/`) — no cloned
+   route renders a .qd-reveal element.
+   --------------------------------------------------------------- */
+:root {
+  --qd-dur-fast: 200ms;
+  --qd-dur-base: 400ms;
+  --qd-dur-slow: 700ms;
+
+  /* fluid redesign — shared vertical rhythm scale, replaces ad-hoc per-section py-[...].
+     Plain custom properties (not @theme) because Tailwind v4's spacing scale only
+     accepts a single numeric --spacing multiplier, not named --spacing-<key> entries —
+     consumed via arbitrary-value utilities, e.g. py-[var(--qd-section-y)]. */
+  --qd-section-y: clamp(3.5rem, 6vw, 7rem);
+  --qd-section-y-lg: clamp(4.5rem, 8vw, 9rem);
+}
+
+.qd-reveal {
+  opacity: 0;
+  transition:
+    opacity var(--qd-dur-slow) var(--ease-out-expo),
+    transform var(--qd-dur-slow) var(--ease-out-expo);
+  transition-delay: var(--qd-reveal-delay, 0ms);
+}
+.qd-reveal[data-variant="up"] {
+  transform: translateY(24px);
+}
+.qd-reveal[data-variant="scale"] {
+  transform: scale(0.96);
+}
+.qd-reveal[data-variant="fade"] {
+  transform: none;
+}
+.qd-reveal[data-inview="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+/* A child that trails its ancestor .qd-reveal's entrance by its own delay,
+   without needing a second IntersectionObserver — it just watches for the
+   ancestor's data-inview flag via CSS. Used for decorative depth layers
+   (e.g. a ghost numeral behind a title) that should settle in after the
+   main content. */
+.qd-reveal-child {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity var(--qd-dur-slow) var(--ease-out-expo),
+    transform var(--qd-dur-slow) var(--ease-out-expo);
+  transition-delay: var(--qd-reveal-delay, 0ms);
+}
+[data-inview="true"] .qd-reveal-child {
+  opacity: 1;
+  transform: none;
+}
+
+/* Pure-CSS mount entrance (no scroll trigger, no JS) — for above-the-fold
+   content like the hero, where everything is visible on first paint and a
+   scroll-observer would be pointless overhead. */
+@keyframes qdEnter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.qd-enter {
+  opacity: 0;
+  animation: qdEnter var(--qd-dur-slow) var(--ease-out-expo) both;
+  animation-delay: var(--qd-enter-delay, 0ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .qd-reveal,
+  .qd-reveal-child {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .qd-enter {
+    opacity: 1;
+    animation: none;
+    transform: none;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Cloned-route component styles, extracted verbatim from runtime
+   <style> blocks (Phase A5). Selectors/values unchanged — only the
+   img() asset-URL interpolation was resolved to a literal string,
+   since every one of these paths was already static per component.
+   --------------------------------------------------------------- */
+
+/* Hero.tsx (ar-75f3ac56) */
+.qd-hero-wrap {
+  height: 60vh;
+}
+.qd-hero-left {
+  opacity: 0.75;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.qd-hero-square {
+  content: ".";
+  display: block;
+  position: absolute;
+  pointer-events: none;
+  border: #c9bcff 9vh solid;
+  width: 40vh;
+  height: 40vh;
+  top: 11.1vh;
+  left: calc(50% - 9vh);
+  opacity: 0.2;
+}
+.qd-hero-right {
+  background-image: url("/sites/www-qataridiar-com-24dfe100/ar-75f3ac56/images/pattern-hero.svg");
+  background-position: 100% 0%;
+  background-repeat: repeat;
+  padding-right: 12%;
+}
+.qd-hero-link {
+  background-image: url("/sites/www-qataridiar-com-24dfe100/ar-75f3ac56/images/icon-arrow-circle.svg");
+  background-position: right center;
+  background-repeat: no-repeat;
+  padding-right: 40px;
+  transition: all 0.5s ease;
+}
+.qd-hero-link:hover {
+  color: #ffffff;
+  background-position-x: calc(100% - 5px);
+}
+@media (max-width: 991px) {
+  .qd-hero-title {
+    font-size: 26px;
+    line-height: 35px;
+  }
+}
+@media (max-width: 767px) {
+  .qd-hero-wrap {
+    height: auto;
+    padding-bottom: 0;
+  }
+  .qd-hero-left {
+    width: 100%;
+    min-height: 400px;
+    background-image: var(--mobile-image) !important;
+  }
+  .qd-hero-right {
+    width: 100%;
+    padding-right: 0;
+  }
+  .qd-hero-square {
+    top: 160px;
+    border: #c9bcff 40px solid;
+    width: 200px;
+    height: 200px;
+    left: calc(50% - 120px);
+  }
+  .qd-hero-title {
+    margin: 80px 15px 40px;
+    width: auto;
+  }
+  .qd-hero-list {
+    margin: 0 15px 30px;
+    width: 100%;
+  }
+}
+@media (min-width: 2300px) {
+  .qd-hero-title {
+    max-width: 720px;
+    font-size: 86px;
+    line-height: 85px;
+    width: 100%;
+  }
+  .qd-hero-link {
+    font-size: 22px;
+  }
+}
+
+/* ExploreProjects.tsx (ar-75f3ac56) */
+/* The arabic stylesheet flips this whole view to LTR, then forces the
+   heading and filter rows back to RTL. */
+.qd-explore {
+  position: relative;
+  direction: ltr;
+}
+.qd-explore-header,
+.qd-explore-filters {
+  direction: rtl;
+}
+.qd-explore-header {
+  margin: 0 auto;
+  max-width: 1230px;
+  padding: 0 15px;
+  width: 100%;
+  position: relative;
+}
+.qd-explore-title {
+  color: #201747;
+  text-transform: uppercase;
+  font-size: 35px;
+  font-weight: 700;
+  line-height: 40px;
+  margin-bottom: 40px;
+}
+.qd-explore-cta {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 25px;
+  height: 25px;
+  text-transform: uppercase;
+  color: #cb9c69;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  background-image: url("/sites/www-qataridiar-com-24dfe100/ar-75f3ac56/images/icon-arrow-circle.svg");
+  background-position: right center;
+  background-repeat: no-repeat;
+  padding-right: 40px;
+  transition: 0.3s;
+}
+.qd-explore-cta:hover {
+  color: #201747;
+  background-position-x: calc(100% - 5px);
+}
+
+.qd-explore-filters {
+  margin: 0 auto;
+  max-width: 1230px;
+  width: 100%;
+  padding: 0;
+}
+.qd-filters-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+.qd-filter-item {
+  padding: 0 15px;
+}
+.qd-filter-label {
+  color: #cb9c69;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 14px;
+  cursor: pointer;
+}
+.qd-filter-item[data-checked="true"] .qd-filter-label {
+  border-bottom: 1px solid #cb9c69;
+}
+
+.qd-map-wrap {
+  width: 100%;
+}
+.qd-map {
+  position: relative;
+  width: auto;
+  display: inline-block;
+}
+.qd-map img {
+  width: auto;
+  height: 650px;
+}
+.qd-marker {
+  position: absolute;
+  font-size: 0;
+  display: block;
+  width: 21px;
+  height: 21px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("/sites/www-qataridiar-com-24dfe100/ar-75f3ac56/images/map-marker.svg");
+}
+.qd-marker[data-active="true"] {
+  background-image: url("/sites/www-qataridiar-com-24dfe100/ar-75f3ac56/images/map-marker-active.svg");
+  z-index: 9;
+}
+
+.qd-panel {
+  position: absolute;
+  height: 430px;
+  max-width: 760px;
+  width: 100%;
+  right: 0;
+  bottom: 120px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 45px, #201747 46px, #201747 100%);
+}
+.qd-panel-photo {
+  position: absolute;
+  margin-left: 350px;
+  width: 310px;
+  height: 310px;
+  overflow: hidden;
+}
+.qd-panel-photo img {
+  width: 100%;
+  height: auto;
+  transition: transform 2s ease;
+}
+.qd-panel-photo:hover img {
+  transform: scale(1.1);
+}
+.qd-panel-text {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 85px 50px 40px;
+  max-width: 350px;
+  height: 430px;
+  text-align: right;
+}
+.qd-panel-text > * {
+  width: 100%;
+}
+.qd-panel-title {
+  color: #ffffff;
+  text-transform: uppercase;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 30px;
+  margin: 20px 0 38px;
+  order: 1;
+}
+.qd-panel-meta {
+  opacity: 0.7;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 18px;
+  text-transform: uppercase;
+}
+.qd-panel-status {
+  order: 2;
+  height: 36px;
+}
+.qd-arrow {
+  background-image: url("/sites/www-qataridiar-com-24dfe100/ar-75f3ac56/images/icon-slick-arrow.svg");
+  background-repeat: no-repeat;
+  height: 15px;
+  width: 28px;
+  position: absolute;
+  z-index: 55;
+  cursor: pointer;
+  font-size: 0;
+}
+.qd-prev {
+  left: 50px;
+  top: 85px;
+}
+.qd-next {
+  left: 95px;
+  top: 77px;
+  transform: rotate(180deg);
+}
+
+@media (max-width: 1200px) {
+  .qd-explore {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+  .qd-explore-cta {
+    position: relative;
+    margin: -20px 0 25px;
+    top: 0;
+    display: block;
+  }
+  .qd-map img {
+    height: auto;
+    width: 100%;
+  }
+  .qd-map {
+    display: block;
+    width: 100%;
+  }
+  .qd-panel {
+    position: relative;
+    bottom: 0;
+    margin: -85px 0 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 85px, #201747 86px, #201747 100%);
+  }
+  .qd-prev {
+    top: 125px;
+    left: 20px;
+  }
+  .qd-next {
+    top: 117px;
+    left: 65px;
+  }
+}
+@media (max-width: 991px) {
+  .qd-explore-header {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+  .qd-filter-item {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+}
+@media (max-width: 767px) {
+  .qd-explore-title {
+    font-size: 22px;
+    line-height: 26px;
+  }
+  .qd-filter-item {
+    width: 100%;
+    padding: 0;
+    margin: 0 15px;
+  }
+  .qd-filter-label {
+    display: none;
+    padding: 10px 25px 10px 0;
+    transition: none;
+  }
+  .qd-filter-item[data-checked="true"] {
+    order: -1;
+    border-bottom: 1px solid #cb9c69;
+  }
+  .qd-filter-item[data-checked="true"] .qd-filter-label {
+    display: block;
+    border: none;
+  }
+  .qd-panel {
+    max-width: 100%;
+    height: 305px;
+  }
+  .qd-panel-photo {
+    margin-left: 0;
+    width: 190px;
+    height: 190px;
+    right: 0;
+  }
+  .qd-panel-text {
+    height: 305px;
+    padding: 85px 15px 10px;
+  }
+  .qd-panel-title {
+    font-size: 20px;
+    margin: 5px 0;
+    line-height: 30px;
+  }
+  .qd-panel-meta {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+/* FeaturedProject.tsx (ar-75f3ac56) */
+.qd-featured-project::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 483px;
+  height: 483px;
+  top: 0;
+  right: 42%;
+  opacity: 0.15;
+  border: 50px solid #201747;
+}
+@media (max-width: 991px) {
+  .qd-featured-project::before {
+    width: 422px;
+    height: 422px;
+    top: 60px;
+    right: 29px;
+    border-width: 43px;
+  }
+}
+@media (max-width: 767px) {
+  .qd-featured-project::before {
+    width: 148px;
+    height: 148px;
+    top: 70px;
+    left: 30px;
+    right: inherit;
+    border-width: 18px;
+  }
+}
+
+/* NewsSection.tsx (ar-75f3ac56) */
+.qd-news-link {
+  background-image: url("/sites/www-qataridiar-com-24dfe100/ar-75f3ac56/images/icon-arrow-circle.svg");
+  background-position: right center;
+  background-repeat: no-repeat;
+  padding: 4px 40px 4px 0;
+  transition: 0.3s;
+}
+.qd-news-link:hover {
+  color: #201747;
+  background-position-x: calc(100% - 5px);
+}
+.qd-news-img {
+  transition: transform 2s ease;
+}
+.qd-news-img:hover {
+  transform: scale(1.05);
+}
+@media (max-width: 991px) {
+  .qd-news {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+}
+@media (max-width: 767px) {
+  .qd-news {
+    margin: 45px auto 10px;
+  }
+  .qd-news-title {
+    font-size: 22px;
+    line-height: 28px;
+  }
+  .qd-news-header {
+    position: relative;
+    top: 0;
+    margin-top: 20px;
+  }
+  .qd-news-grid {
+    margin-top: 20px;
+  }
+  .qd-news-row {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  .qd-news-headline {
+    margin-bottom: 15px;
+    font-size: 18px;
+    line-height: 26px;
+  }
+}
+
+/* OtherBusinesses.tsx (ar-75f3ac56) */
+@media (max-width: 767px) {
+  .qd-biz {
+    margin: 0 auto;
+  }
+  .qd-biz-title {
+    font-size: 22px;
+    line-height: 35px;
+  }
+  .qd-biz-row {
+    width: 50%;
+    flex-basis: 50%;
+  }
+}
+@media (max-width: 480px) {
+  .qd-biz-row img {
+    max-width: 110px;
+  }
+}
+
+/* StatsIntro.tsx (ar-75f3ac56) */
+.qd-stats-link {
+  background-image: url("/sites/www-qataridiar-com-24dfe100/ar-75f3ac56/images/icon-arrow-circle.svg");
+  background-position: right center;
+  background-repeat: no-repeat;
+  padding: 4px 40px 4px 0;
+  transition: 0.3s;
+}
+.qd-stats-link:hover {
+  color: #201747;
+  background-position-x: calc(100% - 5px);
+}
+@media (max-width: 1040px) {
+  .qd-metric-key {
+    font-size: 40px;
+    line-height: 50px;
+  }
+  .qd-metric-val {
+    font-size: 12px;
+    line-height: 16px;
+    padding: 5px 0 0 10px;
+  }
+  .qd-intro-title {
+    font-size: 20px;
+    line-height: 28px;
+  }
+}
+@media (max-width: 991px) {
+  .qd-stats {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+}
+@media (max-width: 767px) {
+  .qd-stats {
+    margin: 0 auto;
+    padding: 30px 15px;
+  }
+  .qd-stats-region {
+    flex: inherit;
+    width: 100%;
+  }
+  .qd-metric-key {
+    font-size: 50px;
+    line-height: 68px;
+  }
+  .qd-metric-val {
+    font-size: 15px;
+    line-height: 25px;
+    padding: 40px 0 0 0;
+  }
+  .qd-intro-title {
+    padding: 0;
+    font-size: 20px;
+    line-height: 25px;
+  }
+}
+@media (max-width: 450px) {
+  .qd-metrics {
+    justify-content: space-between;
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+  .qd-metric-item {
+    padding-top: 0;
+  }
+  .qd-metric {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+/* SiteHeader.tsx (shared) */
+@keyframes qdFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.qd-burger {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s;
+}
+.qd-burger[data-open="true"] {
+  transform: scaleX(1);
+}
+.qd-burger li.qd-item {
+  opacity: 0;
+}
+.qd-burger[data-open="true"] li.qd-item {
+  animation: qdFadeIn 1s both;
+  animation-delay: calc(400ms + var(--i) * 50ms);
+}
+.qd-bar {
+  position: absolute;
+  display: block;
+  height: 3px;
+  width: 60%;
+  left: 20%;
+  background: #cb9c69;
+  opacity: 1;
+  transform: rotate(0deg);
+  transition: 0.25s ease-in-out;
+}
+.qd-trigger[data-open="true"] .qd-bar-1,
+.qd-trigger[data-open="true"] .qd-bar-4 {
+  top: 18px;
+  width: 0;
+  left: 50%;
+}
+.qd-trigger[data-open="true"] .qd-bar-2 {
+  transform: rotate(45deg);
+}
+.qd-trigger[data-open="true"] .qd-bar-3 {
+  transform: rotate(-45deg);
+}
+.qd-lang {
+  background-image: url("/sites/www-qataridiar-com-24dfe100/ar-75f3ac56/images/icon-lang.svg");
+  background-position: left bottom;
+  background-repeat: no-repeat;
+}
+.qd-search-submit {
+  background-image: url("/sites/www-qataridiar-com-24dfe100/ar-75f3ac56/images/icon-search.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* SiteFooter.tsx (shared) */
+.qd-footer-social a img:last-child {
+  display: none;
+}
+.qd-footer-social a:hover img:first-child {
+  display: none;
+}
+.qd-footer-social a:hover img:last-child {
+  display: inline;
+}
+@media (max-width: 767px) {
+  .qd-footer {
+    text-align: center;
+  }
+  .qd-footer-menu {
+    display: none;
+  }
+  .qd-footer-social {
+    margin-top: 25px;
+  }
+  .qd-footer-bottom {
+    justify-content: center;
+  }
+  .qd-footer-copyright {
+    margin: 0 0 15px;
+  }
+  .qd-footer-legal {
+    display: none;
+  }
+  .qd-footer-credit {
+    width: 100%;
+    text-align: center;
+  }
+}
